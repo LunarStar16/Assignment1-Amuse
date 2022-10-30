@@ -24,9 +24,12 @@ function draw() {
   background(255, 25);
   
 
-  for(var i = 0; i < ripples.length; i++){
+  for(var i = ripples.length - 1; i >= 0; i--){
     ripples[i].display();
     ripples[i].move();
+    if (ripples[i].isFinished()){
+      ripples.splice(i, 1);
+    }
   }
 
   if (ripples.length > 50) {
@@ -48,14 +51,21 @@ function Ripples(x, y) {
   this.display = function() {
     stroke(0);
     ellipse(this.x, this.y, this.d);
-    // circle(circleX, circleY, circleSize * .75);
-    // circle(circleX, circleY, circleSize * .5);
+    ellipse(this.x, this.y, this.d * .75);
+    ellipse(this.x, this.y, this.d * .5);
   }
   this.move = function(){
     this.d= this.d += Size;
   }
 
+  this.isFinished = function(){
+    if (this.d > windowHeight + windowWidth * 2){
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
+
   
 }
-
-
