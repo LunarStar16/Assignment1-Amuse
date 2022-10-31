@@ -11,15 +11,19 @@ var mainView = app.views.create('.view-main')
 var Speed = 5;
 var ripples = [];
 var Size = 5;
-var backcolour = 255;
+var backcolour = '#fff';
 var strokecolour = '#000';
 
 $("#stroke").on("change", function(){
 strokecolour = $('#stroke').val();
-
-
 })
-
+$("#backgroundcolour").on("change", function(){
+  backcolour = $('#backgroundcolour').val();
+})
+// $("#strokesize").on("change", function(){
+//     Size = $('#strokesize').val();
+//     console.log(Size);
+// })
 
 function setup() {
   var cnv = createCanvas(windowWidth, windowHeight);
@@ -30,7 +34,7 @@ function setup() {
 }
 
 function draw() {
-  background(backcolour, 15);
+  background(colorAlpha(backcolour, 0.15));
   stroke(strokecolour);
 
   for(var i = ripples.length - 1; i >= 0; i--){
@@ -79,9 +83,13 @@ function Ripples(x, y) {
   
 }
 
+//https://gist.github.com/bcardiff/3b39ba8e2d00fed68435
+function colorAlpha(aColor, alpha) {
+  var c = color(aColor);
+  return color('rgba(' +  [red(c), green(c), blue(c), alpha].join(',') + ')');
+}
+
 // things I want to do
-// customizable background colour
-// customizable stroke colour
 // customizable stroke size
 // customizing the ammount of ripples 1-3
 // customize Speed
