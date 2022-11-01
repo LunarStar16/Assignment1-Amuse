@@ -20,19 +20,23 @@ strokecolour = $('#stroke').val();
 $("#backgroundcolour").on("change", function(){
   backcolour = $('#backgroundcolour').val();
 })
+$("#strokesize").on("change", function(){
+    Size = $('#strokesize').val();
+})
 
 
 function setup() {
   var cnv = createCanvas(windowWidth, windowHeight);
   cnv.parent("p5canvas");
   noFill();
-  strokeWeight(Size);
+  
   
 }
 
 function draw() {
   background(colorAlpha(backcolour, 0.15));
   stroke(strokecolour);
+  strokeWeight(Size);
 
   for(var i = ripples.length - 1; i >= 0; i--){
     ripples[i].display();
@@ -65,6 +69,10 @@ function Ripples(x, y) {
     ellipse(this.x, this.y, this.d * .5);
   }
   this.move = function(){
+  //   $("#speed").on("change", function(){
+  //     Speed = $('#speed').val();
+  //     console.log(Speed);
+  // })
     this.d= this.d += Speed;
   }
 
@@ -87,6 +95,5 @@ function colorAlpha(aColor, alpha) {
 }
 
 // things I want to do
-// customizable stroke size
 // customizing the ammount of ripples 1-3
 // customize Speed
