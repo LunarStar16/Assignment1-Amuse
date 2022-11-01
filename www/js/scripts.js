@@ -20,10 +20,7 @@ strokecolour = $('#stroke').val();
 $("#backgroundcolour").on("change", function(){
   backcolour = $('#backgroundcolour').val();
 })
-// $("#strokesize").on("change", function(){
-//     Size = $('#strokesize').val();
-//     console.log(Size);
-// })
+
 
 function setup() {
   var cnv = createCanvas(windowWidth, windowHeight);
